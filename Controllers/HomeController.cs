@@ -15,11 +15,19 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // 向Session寫入資料
+        HttpContext.Session.SetString("User", "hunter");
         return View();
     }
 
     public IActionResult Privacy()
     {
+        // 讀取Session的資料
+        var user = HttpContext.Session.GetString("User");
+        if (user != null)
+        {
+            Console.WriteLine("Session: " + user);
+        }
         return View();
     }
 
